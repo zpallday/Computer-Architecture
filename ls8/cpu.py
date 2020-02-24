@@ -81,5 +81,5 @@ class CPU:
         def ram_read(self, address):
             return self.ram[int(str(address), 2)]
         def ram_write(self, address, value):
-            se;f.ram[int(str(address), 2)] = value
+            self.ram[int(str(address), 2)] = value
     pass
