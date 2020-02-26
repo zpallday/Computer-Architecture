@@ -10,7 +10,7 @@ class CPU:
         self.ram = [0] * 256
         self.register = [0] * 8
         self.pc = 0
-        self.rc = 0
+        self.sp = 256
         pass
 
     def load(self, program_file):
@@ -79,9 +79,28 @@ class CPU:
                 b = int(str(b), 2)
                 print(a * b)
                 self.pc += 3
+
+            elif self.ram[self.pc] == '01000101':
+                self.sp -= 1
+                self.ram[self.sp] = self.register[int(self.ram[self.pc + 1], 2)]
+                self.pc += 2
+
+
+            elif self.ram[self.pc] == '01000110':
+                self.ram[self.sp] = self.register[int(self.ram[self.pc + 1], 2)] = self.ram[self.sp]
+                self.sp += 1
+                self.pc += 2
+
+
+
+
+
             elif self.ram[self.pc] == '00000001':
                     self.pc = 0
-                    running = False
+                    break
+            else: 
+                    print(f'{self.ram[self.pc]} is unknown')
+                    break
         def ram_read(self, address):
             return self.ram[int(str(address), 2)]
         def ram_write(self, address, value):
