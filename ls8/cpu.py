@@ -67,14 +67,14 @@ class CPU:
         running = True
         while running:
             if self.ram[self.pc] == '10000010':
-                self.register[int(str(self.ram[self.pc + 1]), 2)] = self.ram[self.pc + 2]
+                self.register[int(self.ram[self.pc + 1], 2)] = self.ram[self.pc + 2]
                 self.pc += 3
             elif self.ram[self.pc] == '01000111':
-                print(self.register[int(str(self.ram[self.pc + 1]),2)])
+                print(int(self.register[int(self.ram[self.pc + 1],2 )], 2))
                 self.pc += 2
             elif self.ram[self.pc] == '10100010':
-                a = self.register[int(str(self.ram[self.pc + 1]))]
-                b = self.register[int(str(self.ram[self.pc + 2]))]
+                a = self.register[int(self.ram[self.pc + 1], 2)]
+                b = self.register[int(self.ram[self.pc + 2], 2)]
                 a = int(str(a), 2)
                 b = int(str(b), 2)
                 print(a * b)
